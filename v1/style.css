@@ -11,6 +11,10 @@ body {
   padding: 48px 64px;
 }
 
+.hidden {
+  display: none !important;
+}
+
 /* MAIN LAYOUT */
 .container {
   max-width: 1200px;
@@ -29,6 +33,12 @@ body {
   gap: 48px;
 }
 
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ELEMENTS */
 
 .logo {
@@ -40,15 +50,6 @@ body {
 .logo img {
   width: 68px;
   height: 68px;
-}
-
-.fact-form {
-  background-color: #44403c;
-  margin-bottom: 40px;
-  padding: 16px 40px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
 }
 
 h1 {
@@ -66,10 +67,19 @@ h1 {
   padding: 16px 24px;
   margin-bottom: 16px;
   letter-spacing: -1px;
+  border-radius: 20px;
 
   display: flex;
   align-items: center;
   gap: 24px;
+}
+
+@media (max-width: 1200px) {
+  .fact {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
 }
 
 .source:link,
@@ -163,6 +173,17 @@ ul {
   margin-bottom: 16px;
 }
 
+/* FORM */
+
+.fact-form {
+  background-color: #44403c;
+  margin-bottom: 40px;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .fact-form input,
 .fact-form select {
   background-color: #78716c;
@@ -186,4 +207,18 @@ ul {
 .fact-form span {
   font-weight: 600;
   font-size: 18px;
+}
+
+@media (max-width: 1000px) {
+  body {
+    padding: 32px 48px;
+  }
+  .fact-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .fact-form input,
+  .fact-form select {
+    width: auto;
+  }
 }
