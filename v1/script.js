@@ -43,7 +43,7 @@ const CATEGORIES = [
   { name: 'news', color: '#8b5cf6' },
 ];
 
-import apiKey from '../apikey';
+import apiKey from './apikey.js';
 
 //////////
 
