@@ -1,11 +1,15 @@
 import './style.css';
 import { CATEGORIES, initialFacts } from './data';
+import { useState } from 'react';
 
 function App() {
+  const [showForm, setShowForm] = useState(false);
+
   return (
     <>
-      <Header />
-      <NewFactForm />
+      <Header showForm={showForm} setShowForm={setShowForm} />
+
+      {showForm && <NewFactForm />}
       <main className="main">
         <CategoryFilter />
         <FactList />
@@ -14,22 +18,60 @@ function App() {
   );
 }
 
-function Header() {
+function Header({ showForm, setShowForm }) {
+  const appTitle = 'Today I Learned';
+
   return (
     <header className="header">
       <div className="logo">
-        <img src="logo.png" alt="Today I Learned Logo" />
-        <h1>Today I Learned</h1>
+        <img src="logo.png" alt={appTitle} />
+        <h1>{appTitle}</h1>
       </div>
-      <button className="fact-form-button btn btn-large btn-open">
-        Share a fact
+      <button
+        className="fact-form-button btn btn-large btn-open"
+        onClick={() => setShowForm(!showForm)}
+      >
+        {showForm ? 'Close' : 'Share a fact'}
       </button>
     </header>
   );
 }
 
 function NewFactForm() {
-  return <form className="fact-form">New Fact Form</form>;
+  const [text, setText] = useState('');
+  const [source, setSource] = useState('');
+  const [category, setCategory] = useState('');
+
+  function handleSubmit(e) {
+    e.preventDefault();
+  }
+
+  return (
+    <form className="fact-form" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Share a fact with the world"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <span>{200 - text.length}</span>
+      <input
+        type="text"
+        placeholder="Trustworthy source"
+        value={source}
+        onChange={(e) => setSource(e.target.value)}
+      />
+      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+        <option value="">Choose category:</option>
+        {CATEGORIES.map((cat) => (
+          <option value={cat.name} key={cat.name}>
+            {cat.name.toUpperCase()}
+          </option>
+        ))}
+      </select>
+      <button class="btn btn-large">Post</button>
+    </form>
+  );
 }
 
 function CategoryFilter() {
