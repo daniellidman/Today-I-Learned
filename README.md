@@ -1,2 +1,2 @@
 # Today I Learned
-Full Stack App Built following Jonas Schmedtmann's Udemy Course
+Full Stack App built following Jonas Schmedtmann's Udemy Course
